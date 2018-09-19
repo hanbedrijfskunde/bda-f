@@ -1,0 +1,49 @@
+---
+title: "Open Data"
+output: html_notebook
+---
+
+### Laden van libraries
+Allereerst laden we aantal libraries met functies die we willen gebruiken. Voor een overzicht van beschikbare libraries (packages) kijk op [CRAN](https://cran.r-project.org/web/packages/).
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(plotly)
+```
+
+
+### Inlezen data
+Één van de meest gebruikte formaten voor databestanden is 'comma separated values' (csv). Alle standaard datapaketten (bijv. Excel of SPSS) kunnen dit formaat eenvoudig inlezen. R heeft voor alle gangbare formaten een inleesfunctie en voor meer exotische varianten heeft meestal iemand wel een package geschreven.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+## Databron: https://opendata.cbs.nl/statline/portal.html?_la=nl&_catalog=CBS&tableId=80474ned&_theme=5
+
+filepath <- "./data/vacatures-cbs.csv"
+vacaturesDF <- read.csv(filepath, sep = ";") ##Gebruik 'read.csv2' voor numerieke data met europese opmaak
+head(vacaturesDF)
+str(vacaturesDF)
+summary(vacaturesDF)
+```
+
+### Visualisatie - standaard plots met ggplot2
+De meest gebruikte library voor data visualisatie in R is `ggplot`. Voor meer informatie lees H3 uit [R for Data Science](http://r4ds.had.co.nz/data-visualisation.html) of zie de uitleg op [website](https://github.com/tidyverse/ggplot2)
+
+```{r}
+p1 <- ggplot(vacaturesDF) + 
+  geom_col(aes(x=Perioden, y=VacaturesSeizoengecorrigeerd_1, fill="tomato")) +
+  scale_x_discrete(breaks=c("1997KW01", "2018KW02")) +
+  guides(fill="none") +
+  theme(axis.text.x = element_text(size=14, angle=45, vjust = 0.5, hjust = 0.8))
+  
+p1
+```
+
+### Interactieve plot
+Met het pakket `plotly` kun je heel snel interactieve elementen toevoegen aan een grafiek die met `ggplot` is gemaakt.
+```{r}
+ggplotly(p1, width=900)
+```
+
+### Opdracht
+Bedenk een trend die je wilt onderzoeken, vind een passende data set via een open source bron en bouw een visualisatie. 
