@@ -1,0 +1,41 @@
+---
+title: "FAB-cluster Big Data Analytics (FABDA)"
+subtitle: "Tutorial"
+author: "Witek ten Hove"
+date: "`r format(Sys.time(), '%d-%m-%Y')`"
+output:
+  html_document:
+    css: styles.css
+    includes:
+      in_header: header.html
+    self_contained: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+<hr>
+## Inleiding
+
+Lara is verantwoordelijk voor het toezicht op het veiligheidsbeleid bij een multinational. Hiervoor gebruikt ze data die ze van de managers van de verschillende productielocaties krijgt. Wekelijks vullen ze een vragenlijst in. Op basis van de antwoorden kan Lara zich een beeld vormen van de ontwikkelingen bij de afzonderlijke locaties en zien of het beleid in een voldoende tempo wordt uitgevoerd. Lara stuurt de data maandelijks door aan het hoofd van de afdeling Risk Management met een analyse en commentaar.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+source("data.R")
+library(DT)
+datatable(data)
+```
+
+Hoe kan Lara deze workflow zo efficient en effectief mogelijk uitvoeren? In deze workshop gaan we Lara helpen met dit vraagstuk.
+
+
+
+## H2
+
+Tekst
+```{r}
+ggplotly(p)
+```
